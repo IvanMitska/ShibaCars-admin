@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiHome, FiBarChart2, FiClock, FiSettings, FiMenu, FiX } from 'react-icons/fi';
-import { useStore } from '../store/store';
+import { FiSettings, FiMenu, FiX } from 'react-icons/fi';
 
 const Navigation = () => {
   const location = useLocation();
-  const { isAdmin } = useStore();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Admin-only navigation
