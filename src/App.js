@@ -64,10 +64,6 @@ function App() {
           <main className="container mx-auto px-4 md:px-8 py-6 md:py-10 max-w-4xl">
             <Routes>
               <Route path="/" element={<AdminPanel />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/analytics" element={<Analytics />} />
-              <Route path="/history" element={<History />} />
-              <Route path="/admin" element={<AdminPanel />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>
