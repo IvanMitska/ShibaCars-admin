@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiSettings, FiMenu, FiX } from 'react-icons/fi';
+import { FiHome, FiBarChart2, FiClock, FiMenu, FiX } from 'react-icons/fi';
 
 const Navigation = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Admin-only navigation
   const navItems = [
-    { path: '/', label: 'Админ панель', icon: FiSettings },
+    { path: '/', label: 'Главная', icon: FiHome },
+    { path: '/analytics', label: 'Аналитика', icon: FiBarChart2 },
+    { path: '/history', label: 'История', icon: FiClock },
   ];
 
   return (

@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Toaster } from 'react-hot-toast';
 import AdminPanel from './components/AdminPanel';
+import Analytics from './components/Analytics';
+import History from './components/History';
 import Navigation from './components/Navigation';
 import { useStore } from './store/store';
 import { initTelegramWebApp } from './services/telegram';
@@ -61,6 +63,8 @@ function App() {
           <main className="container mx-auto px-4 md:px-8 py-6 md:py-10 max-w-4xl">
             <Routes>
               <Route path="/" element={<AdminPanel />} />
+              <Route path="/analytics" element={<Analytics />} />
+              <Route path="/history" element={<History />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>

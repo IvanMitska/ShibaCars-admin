@@ -1,21 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { motion } from 'framer-motion';
 import { FiClock, FiGlobe, FiSmartphone, FiMonitor, FiChevronLeft, FiChevronRight, FiMessageCircle, FiSend } from 'react-icons/fi';
-import { partnerAPI } from '../services/api';
+import { adminAPI } from '../services/api';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
+import { useStore } from '../store/store';
 
 const History = () => {
   const [page, setPage] = useState(0);
   const limit = 20;
+  const { isAdmin, setIsAdmin, setToken } = useStore();
+
+  // Check for admin token on mount
+  useEffect(() => {
+    const adminToken = localStorage.getItem('adminToken');
+    if (adminToken && !isAdmin) {
+      setIsAdmin(true);
+      setToken(adminToken);
+    }
+  }, [isAdmin, setIsAdmin, setToken]);
 
   const { data, isLoading, isFetching } = useQuery(
     ['clicks', page],
-    () => partnerAPI.getClicks({ limit, offset: page * limit }),
+    () => adminAPI.getAllClicks({ limit, offset: page * limit }),
     {
       staleTime: 60 * 1000,
-      keepPreviousData: true
+      keepPreviousData: true,
+      enabled: isAdmin
     }
   );
 
